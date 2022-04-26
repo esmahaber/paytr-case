@@ -145,6 +145,7 @@
             v-model="city"
             :class="{ 'is-invalid': v$.phone.$error }"
             @blur="v$.city.$touch()"
+            @change="selectCity()"
           >
             <option disabled>Şehir Seçiniz</option>
             <option
@@ -173,8 +174,9 @@
             aria-label="Floating label select example"
             v-model="district"
           >
+
             <option disabled>İlçe Seçiniz</option>
-            <option></option>
+            <option  v-for="district in districts" :key="district" v-bind:value="district">{{district}}</option>
           </select>
           <label for="floatingSelect">İlçe</label>
           <div class="invalid-feedback">Lütfen ilçe seçiniz</div>
@@ -211,7 +213,7 @@
 import citys from "../helper/citys.json";
 import useVuelidate from "@vuelidate/core";
 import { required, email, minLength, numeric } from "@vuelidate/validators";
-import 'bootstrap-icons/font/bootstrap-icons.css'
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default {
   name: "ReceiptForm",
@@ -221,7 +223,7 @@ export default {
   data() {
     return {
       cityList: citys,
-      districts: [],
+      districts: "",
       name: "",
       lastname: "",
       email: "",
@@ -233,18 +235,20 @@ export default {
     };
   },
   methods: {
-    submit: function () {
+    submit: function () {},
+    selectCity: function () {
       var self = this;
-
-      self.$v.$touch();
-      if (this.$v.$pedding || this.$v.$error) return;
+      let cityId = self.city;
+      let cityList = self.cityList;
+      let selectCity = cityList.find(element => element.plaka == cityId);
+      self.districts = selectCity.ilceleri;
     },
   },
   validations() {
     return {
-      name: { required, minLength: minLength(2) }, // Matches this.firstName
-      lastname: { required }, // Matches this.lastName
-      email: { required, email }, // Matches this.contact.email
+      name: { required, minLength: minLength(2) }, 
+      lastname: { required }, 
+      email: { required, email }, 
       phone: { required, numeric, minLength: minLength(3) },
       city: { required },
       district: { required },
@@ -254,38 +258,40 @@ export default {
   },
 };
 </script>
-<style scoped>
-  .receipt{
-    width: 700px;
-    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px;
-    padding: 24px;
-    border-radius: 4px;
-    margin-left: auto;
-    margin-right: auto;
-    background: #fff;
-  }
-  .btn-primary{
-    background: #FF6363;
-    border-color:#FF6363;
-    transition: all .2s ease;
-  }
-  .btn-primary:active, .btn-primary:hover{
-    background: #f04c4c;
-    border-color:#f04c4c;
-    transform: translateY(-2px);
-  }
-  .btn-primary:focus {
-    color: #fff;
-    background-color: #FF6363;
-    border-color: #FF6363;
-    box-shadow: 0 0 0 0.25rem rgb(255 99 99 / 50%);
-  } 
-  .form-check-input:checked {
-    background-color: #FF6363;
-    border-color: #FF6363;
-  }
-  .form-check-input:focus {
-    box-shadow: 0 0 0 0.25rem rgb(255 99 99 / 25%);
-  }
 
+<style scoped>
+.receipt {
+  width: 700px;
+  box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px,
+    rgb(0 0 0 / 30%) 0px 30px 60px -30px;
+  padding: 24px;
+  border-radius: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #fff;
+}
+.btn-primary {
+  background: #ff6363;
+  border-color: #ff6363;
+  transition: all 0.2s ease;
+}
+.btn-primary:active,
+.btn-primary:hover {
+  background: #f04c4c;
+  border-color: #f04c4c;
+  transform: translateY(-2px);
+}
+.btn-primary:focus {
+  color: #fff;
+  background-color: #ff6363;
+  border-color: #ff6363;
+  box-shadow: 0 0 0 0.25rem rgb(255 99 99 / 50%);
+}
+.form-check-input:checked {
+  background-color: #ff6363;
+  border-color: #ff6363;
+}
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem rgb(255 99 99 / 25%);
+}
 </style>
