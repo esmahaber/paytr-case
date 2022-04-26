@@ -211,6 +211,7 @@
 import citys from "../helper/citys.json";
 import useVuelidate from "@vuelidate/core";
 import { required, email, minLength, numeric } from "@vuelidate/validators";
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 export default {
   name: "ReceiptForm",
@@ -253,3 +254,38 @@ export default {
   },
 };
 </script>
+<style scoped>
+  .receipt{
+    width: 700px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px;
+    padding: 24px;
+    border-radius: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #fff;
+  }
+  .btn-primary{
+    background: #FF6363;
+    border-color:#FF6363;
+    transition: all .2s ease;
+  }
+  .btn-primary:active, .btn-primary:hover{
+    background: #f04c4c;
+    border-color:#f04c4c;
+    transform: translateY(-2px);
+  }
+  .btn-primary:focus {
+    color: #fff;
+    background-color: #FF6363;
+    border-color: #FF6363;
+    box-shadow: 0 0 0 0.25rem rgb(255 99 99 / 50%);
+  } 
+  .form-check-input:checked {
+    background-color: #FF6363;
+    border-color: #FF6363;
+  }
+  .form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgb(255 99 99 / 25%);
+  }
+
+</style>
