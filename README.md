@@ -1,24 +1,42 @@
 # paytr-case
 
-## Project setup
-```
-npm install
+## İçerik
+
+PayTR için form submit örnek çalışmasını içerir.
+
+## Dosya Yapısı
+```tech-case-study
+    ├──  node_modules
+    ├──  public
+    │   ├──favicon.ico
+    │   └──index.html 
+    ├──  src
+    │    ├── components
+    │    │    ├── Header.vue
+    │    │    └── ReceiptForm.vue   
+    │    ├──  helper
+    │    │     └── city.json
+    │    ├── App.vue
+    │    └── main.js
+    ├── babel.config.js
+    ├── jsconfig.json
+    ├── package-lock.json
+    ├── package.json
+    ├── README.md
+    └── vue.config.js
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Teknolojiler
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- Vue
+- Axios
+- Bootstrap
+- Vuelidate
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Local Kurulum
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Proje locale klonlanır. 
+[Npm](https://nodejs.org/en/download/) kurulu bilgisayarınızda proje dizinine gidilir. 
+Dizinde ```npm install``` komutu çalıştırılır.
+Bağımlılıklar kurulduktan sonra ```npm run serve``` komutu çalıştırılır.
+Tarayıcınızda http://localhost:8080/ adresi üzerinden projeye erişim sağlayabilirsiniz.
